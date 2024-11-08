@@ -1,5 +1,6 @@
 package boletin1;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Ejercicio1 {
@@ -18,8 +19,7 @@ public class Ejercicio1 {
 		}
 
 		// Saco por pantalla la tabla completa
-		for (int valor : numeros) {
-			System.out.println(valor);
+		System.out.println(Arrays.toString(numeros));
+		
 		}
 	}
-}
