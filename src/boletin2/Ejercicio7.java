@@ -14,8 +14,10 @@ public class Ejercicio7 {
 		for (int i = 1; i <= 10; i++) {
 			tamaño += i;
 		}
+		
 		// Le adjudico el tamaño necesario a la tabla
 		tabla = new int[tamaño];
+		
 		// Relleno la tabla con los numeros, los cuales se repiten el mismo numero de
 		// veces que su valor
 		for (int i = 1, j = 0; i <= 10; i++) {
