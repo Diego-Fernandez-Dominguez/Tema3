@@ -1,0 +1,31 @@
+package boletin4;
+
+public class Ejercicio2 {
+	public static void main(String[] args) {
+
+		// Creo la tabla con los valores
+		int tabla[] = { 1, 2, 3, 4, 5, 10, 7, 8, 9, 6 };
+
+		// Creo la variable tabla y le doy el valor del return de la funcion maximo
+		int max = maximo(tabla);
+
+		// Saco el maximo por pantalla
+		System.out.println(max);
+	}
+
+	static int maximo(int tabla[]) {
+
+		// Inicializo suma como 0
+		int maximo = 0;
+
+		// Hago un for-each para comprobar cual es el valor maximo de la tabla
+		for (int valor : tabla) {
+			
+		}
+
+		// Devuelvo el valor maximo
+		return (maximo);
+
+	}
+
+}

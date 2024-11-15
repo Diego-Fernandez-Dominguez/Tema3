@@ -1,6 +1,5 @@
 package boletin3;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Ejercicio3 {
@@ -9,7 +8,7 @@ public class Ejercicio3 {
 		// Creo la tabla que va a ser utilizada para el ejercicio
 		int tabla[][];
 
-		// Creo las variables que vana guardar los datos dados por el usuario
+		// Creo las variables que van a guardar los datos dados por el usuario
 		int filas;
 		int columnas;
 
@@ -27,15 +26,14 @@ public class Ejercicio3 {
 		// Le doy el tamaño a la tabla
 		tabla = new int[filas][columnas];
 
-		//
+		// Lleno la tabla con los numeros correspondientes y la saco por pantalla
 		for (int i = 0; i < tabla.length; i++) {
 			for (int j = 0; j < tabla[i].length; j++) {
 				tabla[i][j] = 10 * i + j;
+				System.out.print(tabla[i][j] + " ");
 			}
+			System.out.println();
 		}
-
-		// Saco la tabla por pantalla
-		System.out.println(Arrays.deepToString(tabla));
 
 		// Cierro el escaner
 		sc.close();
