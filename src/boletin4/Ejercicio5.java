@@ -15,7 +15,7 @@ public class Ejercicio5 {
 		// Creo el escaner para leer lo que pone el usuario
 		Scanner sc = new Scanner(System.in);
 
-		// Le pido al usuario el numero que quiere busca, y este lo introduce
+		// Le pido al usuario el numero que quiere buscar, y este lo introduce
 		System.out.println("Introduzca el numero que quiere buscar");
 		buscar = sc.nextInt();
 

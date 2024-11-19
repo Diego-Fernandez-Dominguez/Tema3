@@ -39,13 +39,26 @@ public class Ejercicio3 {
 
 		// Creo el randomizador
 		Random rand = new Random();
+		
+		int numAlea;
 
 		// Creo la tabla con los valores
 		int tabla[] = new int[longitud];
 
 		// Relleno la tabla con los valores aleatorios
 		for (int i = 0; i < longitud; i++) {
-			tabla[i] = rand.nextInt(2, fin+1);
+			
+			//Compruebo si el numero es par
+			do {
+				numAlea=rand.nextInt(2, fin+1);
+				
+				if(numAlea%2==0) {
+					tabla[i]=numAlea;
+				}
+				
+			}while (numAlea%2!=0);
+			
+			numAlea=0;
 		}
 
 		// Ordeno la tabla
