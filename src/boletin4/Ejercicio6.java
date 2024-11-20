@@ -60,7 +60,7 @@ public class Ejercicio6 {
 				System.out.println("Digame el " + datos);
 				num = sc.nextInt();
 				assert num <= longitud : "El numero debe ser menor que al longitud de la tabla";
-				assert num < 0 : "El numero debe mayor que 0";
+				assert num > 0 : "El numero debe mayor que 0";
 				error = false;
 			} catch (AssertionError e) {
 				System.err.println(e.getMessage());

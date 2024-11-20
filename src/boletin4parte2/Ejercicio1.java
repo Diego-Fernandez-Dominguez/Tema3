@@ -6,22 +6,27 @@ import java.util.Random;
 public class Ejercicio1 {
 	public static void main(String[] args) {
 
-		// Creo el array bidimensional de 6 filas y 10 columnas
-		int t[][] = new int[6][10];
+		// Creo el array bidimensional
+		int t[][];
 
 		// Llamo a la funcion llenarAleatorios para llenar la tabla de numeros
 		// aleatorios
-		llenarAleatorios(t);
+		t = llenarAleatorios();
 
-		// Llamo a la funcion maximoMinimo para descubrir el minimo y el maximo
-		int valores[] = maximoMinimo(t);
-
+		for(int i=0;i<t.length;i++) {
+			System.out.println(Arrays.toString(t[i]));
+		}
+		
+		System.out.println();
+		
 		// Saco la tabla por pantalla
-		System.out.println(Arrays.toString(valores));
+		System.out.println(Arrays.toString(maximoMinimo(t)));
 
 	}
 
-	static int[][] llenarAleatorios(int[][] t) {
+	static int[][] llenarAleatorios() {
+
+		int t[][] = new int[6][10];
 
 		// Creo el randomizador
 		Random rand = new Random();
