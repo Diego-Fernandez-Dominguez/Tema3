@@ -4,8 +4,9 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Ejercicio2 {
+public class Ejercicio5 {
 
+	// Creo el escaner
 	static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
@@ -13,27 +14,20 @@ public class Ejercicio2 {
 		// Creo la tabla
 		int t[][];
 
-		// Creo la tabla donde se va a guardar la tabla 1 cambiada
-		int[][] tCambia;
+		// Creo la tabla que va a guardar la tabla principal girada
+		int tGirada[][];
 
-		// Creo la variable que va a guardar el numero de filas de la tabla
-		int filas;
-
-		// Creo la variable que va a guardar el numero de columnas de la tabla
-		int columnas;
+		// Creo la variable que va a guardar el numero de filas y columnas de la tabla
+		int filasColum;
 
 		// Llamo a la funcion pedirDatos para pedir los datos
-		filas = pedirDatos("numero de filas");
+		filasColum = pedirDatos("numero de filas");
 
-		// LLamo a la funcion que pide los datos
-		columnas = pedirDatos("numero de columnas");
+		// Llamo a la funcion para girar la tabla
+		t = llenarTabla(filasColum);
 
-		// Llamo a la funcion llenarAleatorios para llenar la tabla de numeros
-		// aleatorios
-		t = llenarTabla(filas, columnas);
-
-		// Llamo a la funcion que cambia la tabla de disposicion
-		tCambia = cambiarDisposicion(t);
+		// Llamo a la funcio que va a giara la tabla 90º
+		tGirada = gira90(t);
 
 		// Saco la tabla original por pantalla
 		System.out.println("Tabla principal: ");
@@ -43,40 +37,48 @@ public class Ejercicio2 {
 
 		// Linea en blanco
 		System.out.println();
-		
-		// Saco la tabla por pantalla
-		System.out.println("Tabla cambiada: ");
-		for (int i = 0; i < tCambia.length; i++) {
-			System.out.println(Arrays.toString(tCambia[i]));
-		}
 
-		// Cierro el escaner
-		sc.close();
+		// Saco la tabla girada por pantalla
+		System.out.println("Tabla girada 90º: ");
+		for (int i = 0; i < tGirada.length; i++) {
+			System.out.println(Arrays.toString(tGirada[i]));
+		}
 
 	}
 
-	static int[][] cambiarDisposicion(int[][] t) {
+	//
 
-		// Creo la tabla con su longitud
-		int t2[][] = new int[t.length][t[1].length];
+	static int[][] gira90(int tablaInicio[][]) {
 
-		// Guardo el numero que esta en la posicion i j de la tabla 1 a la posicion j i
-		// de la tabla 2
-		for (int i = 0; i < t.length; i++) {
-			for (int j = 0; j < t[0].length; j++) {
-				t2[j][i] = t[i][j];
+		// Creo la tabla que va a ser girada
+		int tGirada[][] = new int[tablaInicio.length][tablaInicio[0].length];
 
+		// Creo el contador que va a actuar como i en el segundo for
+		int cont = 0;
+
+		// Empezando desde la ultima fila de la tabla dada por el usuario, restandole 1
+		// a i, coloco la fila en la columna de la tabla girada
+		for (int i = tablaInicio.length - 1; i >= 0; i--) {
+			for (int j = 0; j < tablaInicio[i].length; j++) {
+				tGirada[j][cont] = tablaInicio[i][j];
 			}
+
+			// Le sumo 1 al contador
+			cont++;
 		}
 
-		return t2;
+		// Devuelvo la tabla girada 90º
+		return tGirada;
 
 	}
 
-	static int[][] llenarTabla(int filas, int columnas) {
+	//
+
+	// Lleno la tabla
+	static int[][] llenarTabla(int filasColum) {
 
 		// Creo la tabla a llenar
-		int t[][] = new int[filas][columnas];
+		int t[][] = new int[filasColum][filasColum];
 
 		// Creo un contador
 		int cont = 1;
@@ -95,7 +97,9 @@ public class Ejercicio2 {
 
 	}
 
-//Creo esta funcion para pedir al usuario los datos y comprobar que estan bien
+	//
+
+	// Creo esta funcion para pedir al usuario los datos y comprobar que estan bien
 	static int pedirDatos(String datos) {
 
 		// Creo la variable que va a guardar si ha dado un error o no
