@@ -21,7 +21,7 @@ public class Ejercicio5 {
 		int filasColum;
 
 		// Llamo a la funcion pedirDatos para pedir los datos
-		filasColum = pedirDatos("numero de filas");
+		filasColum = pedirDatos("numero de filas y columnas");
 
 		// Llamo a la funcion para girar la tabla
 		t = llenarTabla(filasColum);
