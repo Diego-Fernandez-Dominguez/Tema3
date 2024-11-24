@@ -1,20 +1,22 @@
 package boletin5;
 
+import java.util.Arrays; 
 import java.util.InputMismatchException;
+import java.util.Random;
 import java.util.Scanner;
 
-public class Ejercicio1 {
+public class Ejercicio3 {
 
 	// Creo el escaner
 	static Scanner sc = new Scanner(System.in);
 
+	// Creo el randomizador
+	static Random rand = new Random();
+
 	public static void main(String[] args) {
 
-		// Creo la tabla
+		// Creo la tabla que va a ser desordenada
 		int t[][];
-
-		// Creo la variable que va a guardar si la tabla es encontrado
-		boolean encontrado;
 
 		// Creo la variable que va a guardar el numero de filas de la tabla
 		int filas;
@@ -22,20 +24,11 @@ public class Ejercicio1 {
 		// Creo la variable que va a guardar el numero de columnas de la tabla
 		int columnas;
 
-		// Creo la variable que va a guardar el numero que el usuario quiere encontrar
-		int valor;
-
-		// Creo la variable que va a guardar el mensaje del resultado
-		String mensaje;
-
 		// Llamo a la funcion pedirDatos para pedir los datos
 		filas = pedirDatos("numero de filas");
 
 		// LLamo a la funcion que pide los datos
 		columnas = pedirDatos("numero de columnas");
-
-		// LLamo a la funcion que pide los datos
-		valor = pedirDatos("valor que busca");
 
 		// Le pongo el tamanyo a la tabla
 		t = new int[filas][columnas];
@@ -44,56 +37,59 @@ public class Ejercicio1 {
 		// dice el usuario
 		t = pedirTabla(t);
 
-		encontrado = seEncuentra(t, valor);
+		// Saco la tabla dada por el usuario
+		System.out.println("Tabla original: ");
+		for (int i = 0; i < t.length; i++) {
+			System.out.println(Arrays.toString(t[i]));
+		}
+		
+		// Desordeno la tabla bidimensional
+		t = desordenarTablaBidimensional(t);
 
-		// Guardo en la variable mensaje si el valor esta en la tabla
-		mensaje = (encontrado) ? "El valor SI esta en la tabla" : "El valor NO esta en la tabla";
+		System.out.println();
 
-		// Saco el mensaje por pantalla
-		System.out.println(mensaje);
-
+		// Saco la tabla desordenada
+		System.out.println("Tabla desordenada: ");
+		for (int i = 0; i < t.length; i++) {
+			System.out.println(Arrays.toString(t[i]));
+		}
+		
 		// Cierro el escaner
 		sc.close();
 
 	}
 
-	static boolean seEncuentra(int[][] t, int valor) {
+	//
 
-		boolean encontrado = false;
+	static int[][] desordenarTablaBidimensional(int[][] t) {
 
-		// Creo la variable que va a guardar el contador de j
-		int contI = 0;
+		// Creo la variable que va a guardar el numero a cambiar de posicion
+		int num;
 
-		// Creo la variable que va a guardar el contador de j
-		int contJ = 0;
+		// Creo la variable que va a guardar la posicion del numero que se va a cambiar
+		int posicion;
 
-		do {
+		for (int i = 0; i < t.length; i++) {
+			for (int j = 0; j < t.length; j++) {
 
-			do {
+			// Guardo el numero de la posicion actual en la variable num
+			num = t[i][j];
 
-				// Compruebo si t[i][j] es igual al valor dado, significa que ya lo ha
-				// encontrado con lo que la variable encontrado se pone en true y se termina el
-				// bucle
-				if (t[contI][contJ] == valor) {
-					encontrado = true;
-					contJ = t[contI].length;
-				} else {
-					contJ++;
-				}
+			// Saco la posicion del numero a cambiar con el random
+			posicion = rand.nextInt(0, t[i].length);
 
-			} while (contJ < t[contI].length);
+			// Intercambio posiciones
+			t[i][j] = t[i][posicion];
+			t[i][posicion] = num;
+			}
+		}
 
-			// Pongo el contador de j a 0
-			contJ = 0;
-
-			// Le sumo 1 al contador de i
-			contI++;
-
-		} while (!encontrado && contI < t.length);
-
-		return encontrado;
+		// Devuelvo la tabla
+		return t;
 
 	}
+
+	//
 
 	static int[][] pedirTabla(int[][] t) {
 
@@ -112,6 +108,8 @@ public class Ejercicio1 {
 		// Lleno la tabla vacia
 		return t;
 	}
+
+	//
 
 	// Creo esta funcion para pedir al usuario los datos y comprobar que estan bien
 	static int pedirDatos(String datos) {
