@@ -1,6 +1,5 @@
 package boletin5;
 
-import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -51,43 +50,47 @@ public class Ejercicio4 {
 			}
 		}
 
+		// Cierro el escaner
+		sc.close();
+
 	}
 
 	//
 
 	static char[][] torre(int posFila, int posColumna, char pieza) {
 
+		// Creo el tablero
 		char tablero[][] = new char[8][8];
 
+		// Relleno la tabla de guiones
 		for (int i = 0; i < tablero.length; i++) {
 			for (int j = 0; j < tablero[i].length; j++) {
-
 				tablero[i][j] = '-';
-
 			}
 		}
 
+		// Pongo a la torre en su posicion
 		tablero[posFila][posColumna] = 'T';
 
 		for (int i = 0; i < tablero.length; i++) {
 			for (int j = 0; j < tablero[i].length; j++) {
 
-				if (tablero[i][j] == 'T') {
-
-				} else {
-
-					if (j == posColumna) {
-						if (tablero[i][j] != 'T') {
-							tablero[i][j] = 'X';
-						}
-					} else if (i == posFila) {
+				// Si J esta en la misma columna que la torre y no en la posicion de la T, pone
+				// una X
+				if (j == posColumna) {
+					if (tablero[i][j] != 'T') {
 						tablero[i][j] = 'X';
 					}
+
+					// Si I esta en la misma fila que la torre, pone una X
+				} else if (i == posFila) {
+					tablero[i][j] = 'X';
 				}
 
 			}
 		}
 
+		// Devuelvo el tablero
 		return tablero;
 
 	}
@@ -96,30 +99,31 @@ public class Ejercicio4 {
 
 	static char[][] alfil(int posFila, int posColumna, char pieza) {
 
+		// Creo el tablero
 		char tablero[][] = new char[8][8];
 
+		// Creo el contador
 		int cont = 0;
 
+		// Relleno la tabla de guiones
 		for (int i = 0; i < tablero.length; i++) {
 			for (int j = 0; j < tablero[i].length; j++) {
-
 				tablero[i][j] = '-';
-
 			}
 		}
 
+		// Pongo al alfil en su posicion
 		tablero[posFila][posColumna] = 'A';
 
+		// Este for sirve para llenar la parte inferior de la pieza
 		for (int i = posFila; i < tablero.length; i++) {
 			for (int j = 0; j < tablero[i].length; j++) {
 
-				if (i == posFila) {
-					if (tablero[i][j] == 'A') {
+				// Si la i es diferente a la posicion de la figura, no hace nada.
+				if (i != posFila) {
 
-					}
-
-				} else {
-
+					// Si se cumplen estas condiciones significa que es un sitio por donde la pieza
+					// se puede mover, con lo que la marco con una X
 					if (j == posColumna - cont || j == posColumna + cont) {
 						tablero[i][j] = 'X';
 					}
@@ -127,25 +131,32 @@ public class Ejercicio4 {
 				}
 			}
 
+			// Le sumo 1 al contador
 			cont++;
 
 		}
 
-		cont = 0;
+		// Pongo el contador a 1
+		cont = 1;
 
+		// Este for sirve para llenar la parte superior de la pieza
 		for (int i = posFila - 1; i >= 0; i--) {
-			cont++;
 			for (int j = 0; j < tablero[i].length; j++) {
 
-				if (j == posColumna - cont) {
-					tablero[i][j] = 'X';
-				} else if (j == posColumna + cont) {
+				// Si se cumple una de estas condiciones significa que es un sitio por donde la
+				// pieza se puede mover, con lo que la marco con una X
+				if (j == posColumna - cont || j == posColumna + cont) {
 					tablero[i][j] = 'X';
 				}
 
 			}
+
+			// Le sumo 1 al contador
+			cont++;
+
 		}
 
+		// Devuelvo el tablero
 		return tablero;
 
 	}
@@ -154,23 +165,27 @@ public class Ejercicio4 {
 
 	static char[][] dama(int posFila, int posColumna, char pieza) {
 
+		// Creo el tablero
 		char tablero[][] = new char[8][8];
 
+		// Creo el contador
 		int cont = 0;
 
+		// Relleno la tabla de guiones
 		for (int i = 0; i < tablero.length; i++) {
 			for (int j = 0; j < tablero[i].length; j++) {
-
 				tablero[i][j] = '-';
-
 			}
 		}
 
+		// Pongo a la dama en su posicion
 		tablero[posFila][posColumna] = 'D';
 
+		// Este for llena la parte inferior del tablero
 		for (int i = posFila; i < tablero.length; i++) {
 			for (int j = 0; j < tablero[i].length; j++) {
 
+				//Si i es igual a la posicion de la fila, hay dos posibilidades
 				if (i == posFila) {
 					if (tablero[i][j] != 'D') {
 						tablero[i][j] = 'X';
@@ -220,33 +235,49 @@ public class Ejercicio4 {
 
 		char tablero[][] = new char[8][8];
 
-		int cont = 0;
+		int cont = 1;
 
 		for (int i = 0; i < tablero.length; i++) {
 			for (int j = 0; j < tablero[i].length; j++) {
-
 				tablero[i][j] = '-';
-
 			}
 		}
 
 		tablero[posFila][posColumna] = 'C';
 
-		for (int i = posFila - 2; i < posFila + 2; i++) {
-			cont++;
-			for (int j = posColumna - 2; j < posColumna + 2; j++) {
+		for (int i = 0; i < posFila; i++) {
+			for (int j = 0; j < tablero[i].length; j++) {
 
-				if (tablero[i][j] == 'C') {
-
-				} else {
-
-					if (j == posColumna - cont || j == posColumna + cont) {
-						tablero[i][j] = 'X';
-					}
-
+				if (i == posFila - 2 && j == posColumna - 1 || i == posFila - 2 && j == posColumna + 1) {
+					tablero[i][j] = 'X';
+				} else if (i == posFila - 1 && j == posColumna - 2 || i == posFila - 1 && j == posColumna + 2) {
+					tablero[i][j] = 'X';
 				}
+
 			}
 
+			if (i <= posFila - 2) {
+				cont++;
+			}
+
+		}
+
+		cont = 1;
+
+		for (int i = 0; i < tablero.length; i++) {
+			for (int j = 0; j < tablero[i].length; j++) {
+
+				if (i == posFila + 1 && j == posColumna + 2 || i == posFila + 1 && j == posColumna - 2) {
+					tablero[i][j] = 'X';
+				} else if (i == posFila + 2 && j == posColumna + 1 || i == posFila + 2 && j == posColumna - 1) {
+					tablero[i][j] = 'X';
+				}
+
+			}
+
+			if (i <= posFila + 2) {
+				cont--;
+			}
 		}
 
 		return tablero;
