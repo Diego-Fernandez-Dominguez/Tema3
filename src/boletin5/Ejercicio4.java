@@ -10,21 +10,29 @@ public class Ejercicio4 {
 
 	public static void main(String[] args) {
 
-		char tablero[][] = null;
+		// Creo el tablero
+		char tablero[][] = new char[8][8];
 
+		// Creo la variable que va a guardar la fila de la pieza
 		int posFila;
 
+		// Creo la variable que va a guardar la columna de la pieza
 		int posColumna;
 
+		// Creo la variable que va a guardar el tipo de pieza
 		char pieza;
 
+		// Pido la pieza
 		System.out.println("Digame la pieza: ");
 		pieza = sc.next().toUpperCase().charAt(0);
 
+		// Pido la fila
 		posFila = pedirDatos("la fila en la que esta la figura");
 
+		// Pido la columna
 		posColumna = pedirDatos("la columna en la que esta la figura");
 
+		// Dependiendo de la pieza que haya elegido, va a irse a una funcion
 		switch (pieza) {
 		case 'T' -> {
 			tablero = torre(posFila, posColumna, pieza);
@@ -43,12 +51,8 @@ public class Ejercicio4 {
 		}
 		}
 
-		for (int i = 0; i < tablero.length; i++) {
-			System.out.println();
-			for (int j = 0; j < tablero.length; j++) {
-				System.out.print(tablero[i][j] + " ");
-			}
-		}
+		// Saco la tabla por pantalla
+		sacarTabla(tablero);
 
 		// Cierro el escaner
 		sc.close();
@@ -185,18 +189,22 @@ public class Ejercicio4 {
 		for (int i = posFila; i < tablero.length; i++) {
 			for (int j = 0; j < tablero[i].length; j++) {
 
-				//Si i es igual a la posicion de la fila, hay dos posibilidades
+				// Si i es igual a la posicion de la fila, hay dos posibilidades
 				if (i == posFila) {
+
+					// Si es diferente a ´D´ pone una ´X´
 					if (tablero[i][j] != 'D') {
 						tablero[i][j] = 'X';
 					}
 
 				} else {
 
+					// Si se cumple una de estas dos condiciones se pone una ´X´
 					if (j == posColumna - cont || j == posColumna + cont) {
 						tablero[i][j] = 'X';
 					}
 
+					// Y si se cumle esta condicion se pone una ´X´
 					if (j == posColumna) {
 						tablero[i][j] = 'X';
 					}
@@ -204,20 +212,28 @@ public class Ejercicio4 {
 
 			}
 
+			// Le sumo 1 al contador
 			cont++;
 
 		}
 
+		// Pongo el contador a 0
 		cont = 0;
 
+		// Este for llena la parte superior del tablero
 		for (int i = posFila - 1; i >= 0; i--) {
+
+			// Le sumo 1 al contador
 			cont++;
+
 			for (int j = 0; j < tablero[i].length; j++) {
 
+				// Si se cumple una de estas dos condiciones se pone una ´X´
 				if (j == posColumna - cont || j == posColumna + cont) {
 					tablero[i][j] = 'X';
 				}
 
+				// Y si se cumle esta condicion se pone una ´X´
 				if (j == posColumna) {
 					tablero[i][j] = 'X';
 				}
@@ -225,6 +241,7 @@ public class Ejercicio4 {
 			}
 		}
 
+		// Devuelvo el tablero
 		return tablero;
 
 	}
@@ -233,53 +250,71 @@ public class Ejercicio4 {
 
 	static char[][] caballo(int posFila, int posColumna, char pieza) {
 
+		// Creo el tablero
 		char tablero[][] = new char[8][8];
 
+		// Creo el contador inicializado a 1
 		int cont = 1;
 
+		// Relleo el tablero de guiones
 		for (int i = 0; i < tablero.length; i++) {
 			for (int j = 0; j < tablero[i].length; j++) {
 				tablero[i][j] = '-';
 			}
 		}
 
+		// Pongo al caballo en su posicion
 		tablero[posFila][posColumna] = 'C';
 
+		// Este for rellena la parte superior de la pieza
 		for (int i = 0; i < posFila; i++) {
 			for (int j = 0; j < tablero[i].length; j++) {
 
+				// Si se cumple una de estas dos condiciones significa que el caballo se puede
+				// mover ahi, con lo que coloco una ´X´
 				if (i == posFila - 2 && j == posColumna - 1 || i == posFila - 2 && j == posColumna + 1) {
 					tablero[i][j] = 'X';
+
+					// O se puede cumplir una de estas dos, lo cual significa lo mismo
 				} else if (i == posFila - 1 && j == posColumna - 2 || i == posFila - 1 && j == posColumna + 2) {
 					tablero[i][j] = 'X';
 				}
 
 			}
 
+			// Si i es igual a la posicion de la fila -2 le sumo 1 al contador
 			if (i <= posFila - 2) {
 				cont++;
 			}
 
 		}
 
+		// Vuelvo a poner el contador a 1
 		cont = 1;
 
+		// Este for rellena la parte de la pieza
 		for (int i = 0; i < tablero.length; i++) {
 			for (int j = 0; j < tablero[i].length; j++) {
 
+				// Si se cumple una de estas dos condiciones significa que el caballo se puede
+				// mover ahi, con lo que coloco una ´X´
 				if (i == posFila + 1 && j == posColumna + 2 || i == posFila + 1 && j == posColumna - 2) {
 					tablero[i][j] = 'X';
+
+					// O se puede cumplir una de estas dos, lo cual significa lo mismo
 				} else if (i == posFila + 2 && j == posColumna + 1 || i == posFila + 2 && j == posColumna - 1) {
 					tablero[i][j] = 'X';
 				}
 
 			}
 
+			// Si i es igual a la posicion de la fila +2 le sumo 1 al contador
 			if (i <= posFila + 2) {
 				cont--;
 			}
 		}
 
+		// Devuelvo el tablero
 		return tablero;
 
 	}
@@ -322,4 +357,15 @@ public class Ejercicio4 {
 
 	}
 
+	static void sacarTabla(char[][] tablero) {
+
+		// Saco la tabla por pantalla
+		for (int i = 0; i < tablero.length; i++) {
+			System.out.println();
+			for (int j = 0; j < tablero.length; j++) {
+				System.out.print(tablero[i][j] + " ");
+			}
+		}
+
+	}
 }
