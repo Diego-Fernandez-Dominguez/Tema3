@@ -13,11 +13,23 @@ public class Exercise1 {
 
 		boolean winner = false;
 
+		fillBoard(board);
+
 		do {
 
+			if(!winner){
+			playGame(board, 'X');
+			
+			checkWinner(board, 'X');
+			}
+			
+			if(!winner) {
+			playGame(board, 'O');
+			
+			checkWinner(board, 'O');
+			}
+			
 		} while (!winner);
-
-		fillBoard(board);
 
 		printBoard(board);
 
@@ -27,10 +39,23 @@ public class Exercise1 {
 
 	//
 
-	static char[][] playGame(char[][] board) {
+	static char[][] playGame(char[][] board, char player) {
 
-		
-		
+		int row;
+
+		int column;
+
+		System.out.println("\n" + player + " turn");
+		printBoard(board);
+
+		System.out.println("\n\nWhat Row");
+		row = sc.nextInt();
+
+		System.out.println("What Column");
+		column = sc.nextInt();
+
+		board[row][column] = player;
+
 		return board;
 
 	}
@@ -95,4 +120,19 @@ public class Exercise1 {
 
 	}
 
+	static boolean checkWinner(char[][] board, char player) {
+		
+		boolean winner=false;	
+		
+		for(int i=0;i < board.length;i++) {
+			for(int j=0;j < board[i].length;j++) {
+		if(board[i][j]==player && board[i][j]==player && board[i][j]==player) {
+			winner=true;
+		}
+		}
+	}
+		
+		return winner;
+		
+	}
 }
