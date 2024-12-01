@@ -3,19 +3,21 @@ package bidimensionalgames;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Exercise1 {
+public class Exercise2 {
 
 	static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
 
-		char board[][] = new char[3][3];
+		char board[][];
 
 		boolean winner = false;
 
-		int cont;
+		int size;
 
-		cont = 0;
+		size = askData("tell me the size of the board");
+
+		board = new char[size][size];
 
 		fillBoard(board);
 
@@ -28,28 +30,14 @@ public class Exercise1 {
 			}
 
 			if (!winner) {
-				cont++;
-			}
-
-			System.out.println(cont);
-
-			if (!winner && cont != 9) {
 				playGame(board, 'O');
 
 				winner = checkWinner(board, 'O');
 			}
 
-			if (!winner && cont != 9) {
-				cont++;
-			}
-
-		} while (!winner && cont != 9);
+		} while (!winner);
 
 		printBoard(board);
-
-		if (cont == 9) {
-			System.out.println("\nDRAW!");
-		}
 
 		sc.close();
 
@@ -59,35 +47,49 @@ public class Exercise1 {
 
 	static char[][] playGame(char[][] board, char player) {
 
-		int row;
-
 		int column;
 
-		boolean occupied = true;
+		int cont;
 
-		System.out.println("\n" + player + " turn");
-		printBoard(board);
+		boolean out;
+
+		boolean occupied;
 
 		do {
 
-			System.out.println("\n\nWhat Row");
-			row = sc.nextInt();
+			cont = 0;
+			occupied = false;
+			out = true;
 
-			System.out.println("What Column");
+			System.out.println("\n" + player + " turn");
+			printBoard(board);
+
+			System.out.println("\n\nWhat Column");
 			column = sc.nextInt();
 
-			if (board[row][column] != '-') {
-				System.out.println("Thats position is occupied, put it in another one");
-				System.out.println();
-				printBoard(board);
+			do {
 
-			} else {
-				occupied = false;
-			}
+				if (board[cont][column] == '-') {
+					cont++;
+				} else {
+					occupied = true;
+					cont--;
+				}
 
-		} while (occupied);
+				if (cont == -1) {
+					System.out.println("\n - Say another column -");
+				} else {
+					out = false;
+				}
 
-		board[row][column] = player;
+			} while (!occupied && cont != board.length);
+
+		} while (out);
+
+		if (cont == board.length)
+			cont--;
+
+		board[cont][column] = player;
 
 		return board;
 
@@ -147,12 +149,19 @@ public class Exercise1 {
 	static void printBoard(char[][] board) {
 
 		System.out.println();
-		System.out.println("   0 1 2");
+
+		for (int i = 0; i < board.length; i++) {
+			if (i == 0) {
+				System.out.print("   " + i + " ");
+			} else {
+				System.out.print(i + " ");
+			}
+		}
 		for (int i = 0; i < board.length; i++) {
 			System.out.println();
 			System.out.print(i + "  ");
 
-			for (int j = 0; j < board.length; j++) {
+			for (int j = 0; j < board[i].length; j++) {
 				System.out.print(board[i][j] + " ");
 			}
 
@@ -166,37 +175,58 @@ public class Exercise1 {
 
 		boolean winner = false;
 
-		// Row
 		if (!winner) {
 			for (int i = 0; i < board.length; i++) {
-				if (board[i][0] == player && board[i][1] == player && board[i][2] == player) {
-					winner = true;
-					i = board.length;
+				for (int j = 0; j < board.length - 3; j++) {
+
+					// Row
+					if (board[i][j] == player && board[i][j + 1] == player && board[i][j + 2] == player
+							&& board[i][j + 3] == player) {
+						winner = true;
+						break;
+					}
 				}
 			}
 		}
 
-		// Column
 		if (!winner) {
-			for (int j = 0; j < board[0].length; j++) {
-				if (board[0][j] == player && board[1][j] == player && board[2][j] == player) {
-					winner = true;
-					j = board[0].length;
+			for (int i = 0; i < board.length - 3; i++) {
+				for (int j = 0; j < board[i].length; j++) {
+
+					if (board[i][j] == player && board[i + 1][j] == player && board[i + 2][j] == player
+							&& board[i + 3][j] == player) {
+						winner = true;
+						break;
+					}
 				}
 			}
 		}
 
-		// Left - Right
 		if (!winner) {
-			if (board[0][0] == player && board[1][1] == player && board[2][2] == player) {
-				winner = true;
+			for (int i = 0; i < board.length - 3; i++) {
+				for (int j = 0; j < board[i].length - 3; j++) {
+
+					// Right - Left Up - Down
+					if (board[i][j] == player && board[i + 1][j + 1] == player && board[i + 2][j + 2] == player
+							&& board[i + 3][j + 3] == player) {
+						winner = true;
+						break;
+					}
+				}
 			}
 		}
 
-		// Right - Left
 		if (!winner) {
-			if (board[2][0] == player && board[1][1] == player && board[0][2] == player) {
-				winner = true;
+			for (int i = 0; i < board.length - 3; i++) {
+				for (int j = 0; j < board[i].length - 3; j++) {
+
+					// Right - Left Down - Up
+					if (board[i][j] == player && board[i - 1][j + 1] == player && board[i - 2][j + 2] == player
+							&& board[i - 3][j - 3] == player) {
+						winner = true;
+						break;
+					}
+				}
 			}
 		}
 
