@@ -10,6 +10,8 @@ public class Exercise2 {
 	public static void main(String[] args) {
 
 		char board[][];
+		
+		int boardCont[];
 
 		boolean winner = false;
 
@@ -18,6 +20,8 @@ public class Exercise2 {
 		size = askData("tell me the size of the board");
 
 		board = new char[size][size];
+		
+		boardCont=new int[size];
 
 		fillBoard(board);
 
@@ -90,7 +94,7 @@ public class Exercise2 {
 			cont--;
 
 		board[cont][column] = player;
-
+		
 		return board;
 
 	}
@@ -193,6 +197,7 @@ public class Exercise2 {
 			for (int i = 0; i < board.length - 3; i++) {
 				for (int j = 0; j < board[i].length; j++) {
 
+					//Column
 					if (board[i][j] == player && board[i + 1][j] == player && board[i + 2][j] == player
 							&& board[i + 3][j] == player) {
 						winner = true;
@@ -206,12 +211,7 @@ public class Exercise2 {
 			for (int i = 0; i < board.length - 3; i++) {
 				for (int j = 0; j < board[i].length - 3; j++) {
 
-					// Right - Left Up - Down
-					if (board[i][j] == player && board[i + 1][j + 1] == player && board[i + 2][j + 2] == player
-							&& board[i + 3][j + 3] == player) {
-						winner = true;
-						break;
-					}
+					
 				}
 			}
 		}
@@ -220,8 +220,8 @@ public class Exercise2 {
 			for (int i = 0; i < board.length - 3; i++) {
 				for (int j = 0; j < board[i].length - 3; j++) {
 
-					// Right - Left Down - Up
-					if (board[i][j] == player && board[i - 1][j + 1] == player && board[i - 2][j + 2] == player
+					// Right - Left Up - Down
+					if (board[i][j] == player && board[i - 1][j - 1] == player && board[i - 2][j - 2] == player
 							&& board[i - 3][j - 3] == player) {
 						winner = true;
 						break;
@@ -229,6 +229,8 @@ public class Exercise2 {
 				}
 			}
 		}
+		
+		
 
 		if (winner)
 			System.out.println("\nThe winner is the player: " + player);

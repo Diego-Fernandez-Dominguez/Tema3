@@ -59,9 +59,9 @@ public class Exercise1 {
 
 	static char[][] playGame(char[][] board, char player) {
 
-		int row;
+		int row = 0;
 
-		int column;
+		int column = 0;
 
 		boolean occupied = true;
 
