@@ -1,15 +1,18 @@
 package bidimensionalgames;
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Exercise2 {
+public class Exercise2Opti {
 
 	static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
 
 		char board[][];
+		
+		int[] boardCont;
 
 		boolean winner = false;
 
@@ -18,19 +21,23 @@ public class Exercise2 {
 		size = askData("tell me the size of the board");
 
 		board = new char[size][size];
-
+		
+		boardCont = new int[size];
+		
 		fillBoard(board);
 
 		do {
 
 			if (!winner) {
-				playGame(board, 'X');
+				playGame(board, 'X', boardCont);
+				
+				System.out.println(Arrays.toString(boardCont));
 
 				winner = checkWinner(board, 'X');
 			}
 
 			if (!winner) {
-				playGame(board, 'O');
+				playGame(board, 'O', boardCont);
 
 				winner = checkWinner(board, 'O');
 			}
@@ -45,7 +52,7 @@ public class Exercise2 {
 
 	//
 
-	static char[][] playGame(char[][] board, char player) {
+	static char[][] playGame(char[][] board, char player, int[] boardCont) {
 
 		int column;
 
@@ -90,6 +97,8 @@ public class Exercise2 {
 			cont--;
 
 		board[cont][column] = player;
+		
+		boardCont[column]=boardCont[column]+1;
 		
 		return board;
 
