@@ -63,8 +63,7 @@ public class Ejercicio7 {
 			posInicio = pos + palabra.length();
 
 			// Busca la palabra dada en la frase desde la ultima posicion guardada y
-			// devuelve la
-			// posicion de la primera letra de esa misma
+			// devuelve la  posicion de la primera letra de esa misma
 			pos = frase.indexOf(palabra, posInicio);
 
 		}
