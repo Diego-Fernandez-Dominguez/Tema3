@@ -1,9 +1,10 @@
 package boletin6;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Ejercicio15 {
+public class Ejercicio16 {
 	public static void main(String[] args) {
 
 		// Variable que va a guardar la frase dada por el usuario
@@ -11,6 +12,9 @@ public class Ejercicio15 {
 
 		// Array que va a guardar la frase desordenada
 		char fraseDesor[];
+
+		// Array que va a guardar las posicion de los caracteres que se han acertado
+		String fraseAcierto[];
 
 		// Creo la variable que va a guardar el intento del jugador 2
 		String intento = "";
@@ -26,6 +30,8 @@ public class Ejercicio15 {
 		// desordenarla
 		fraseDesor = frase.toCharArray();
 
+		fraseAcierto = new String[frase.length()];
+
 		// Compruebo si la frase esta vacia, si es asi le salta un mensaje al usuario de
 		// que la frase no puede estar vacia
 		if (frase.isEmpty()) {
@@ -37,6 +43,8 @@ public class Ejercicio15 {
 
 		}
 
+		Arrays.fill(fraseAcierto, "");
+
 		do {
 
 			// Saco la frase desordenada por pantalla
@@ -45,6 +53,28 @@ public class Ejercicio15 {
 			// Le pido la frase al jugador 2
 			System.out.println("Digame la frase ordenada");
 			intento = noesnavidad.nextLine();
+
+			// Si no ha acertado la frase comprobara las posiciones de la frase dada por el
+			// jugador y la frase ordenada, si algun caracter esta en la misma posicion la
+			// guardara en el array fraseAciertos
+			if (!frase.equals(intento)) {
+
+				try {
+
+					for (int i = 0; i < intento.length(); i++) {
+						if (frase.charAt(i) == intento.charAt(i)) {
+							fraseAcierto[i] = String.valueOf(frase.charAt(i));
+						}
+					}
+
+					// Pongo este catch para que no se cierre el programa si el acierto es de mayor
+					// tamanyo que la frase original
+				} catch (StringIndexOutOfBoundsException e) {
+				}
+
+				System.out.println(Arrays.toString(fraseAcierto));
+
+			}
 
 		} while (!frase.equals(intento));
 
@@ -91,4 +121,5 @@ public class Ejercicio15 {
 		}
 
 	}
+
 }
