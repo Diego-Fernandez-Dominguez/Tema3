@@ -42,14 +42,15 @@ public class Ejercicio20 {
 		// Creo el array que va a guardar la palabra dividida
 		String sucesion[];
 
-		//Creo los contadores
+		// Creo los contadores
 		int cont = 0;
 		int cont2 = 0;
-		
-		//Este while sirve para calcular el tamanyo de la tabla
+
+		// Este while sirve para calcular el tamanyo de la tabla
 		while (cont < palabra.length() && cont2 < palabra.length()) {
 
-			//Compruebo si todavia es posible dividir la palabra por el numero dado con el usuario
+			// Compruebo si todavia es posible dividir la palabra por el numero dado con el
+			// usuario
 			if (palabra.length() - cont < num) {
 
 				cont = palabra.length();
@@ -62,17 +63,17 @@ public class Ejercicio20 {
 			}
 		}
 
-		//Le doy el tamanyo a la tabla
+		// Le doy el tamanyo a la tabla
 		sucesion = new String[cont2];
 
-		//Vacio los contadores
+		// Vacio los contadores
 		cont = 0;
 		cont2 = 0;
 
-		
 		while (cont < palabra.length()) {
 
-			//Compruebo si todavia es posible dividir la palabra por el numero dado con el usuario
+			// Compruebo si todavia es posible dividir la palabra por el numero dado con el
+			// usuario
 			if (palabra.length() - cont < num) {
 
 				sucesion[cont2] = palabra.substring(cont, cont + palabra.length() - cont);
@@ -85,8 +86,8 @@ public class Ejercicio20 {
 			cont = cont + num;
 			cont2++;
 		}
-		
-		//Devuelvo la tabla
+
+		// Devuelvo la tabla
 		return sucesion;
 
 	}

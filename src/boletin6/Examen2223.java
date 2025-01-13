@@ -14,7 +14,7 @@ public class Examen2223 {
 
 	static String palabraPista = "";
 
-	static String noAcertadas;
+	static String noAcertadas = " ";
 
 	static Scanner sc = new Scanner(System.in);
 
@@ -28,22 +28,35 @@ public class Examen2223 {
 
 		generaPalabra();
 
-		pintaPista();
+		while (!palabraSecreta.equals(palabraPista) && noAcertadas.length() < NUM_INTENTOS + 1) {
+			pintaPista();
+			System.out.println(palabraSecreta);
 
-		opcion = menu();
+			opcion = menu();
 
-		if (opcion == 1) {
+			if (opcion == 1) {
 
-			System.out.println("Has elegido la letra");
-			letra = sc.next().charAt(0);
-			compruebaLetra(letra);
+				System.out.println("Has elegido la letra");
+				letra = sc.next().charAt(0);
+				compruebaLetra(letra);
 
+			} else {
+
+				System.out.println("Has elegido la palabra");
+				palabra = sc.next();
+				compruebaPalabra(palabra);
+
+			}
+
+			System.out.println("FALLADAS: " + noAcertadas);
+
+		}
+
+		if (palabraSecreta.equals(palabraPista)) {
+			System.out.println("¡¡ENHORABUENA!! HAS ACERTADO");
 		} else {
 
-			System.out.println("Has elegido la palabra");
-			palabra = sc.next();
-			compruebaPalabra(palabra);
-
+			System.out.println("GAME OVER");
 		}
 
 		sc.close();
@@ -78,13 +91,45 @@ public class Examen2223 {
 	//
 	static void compruebaLetra(char letra) {
 
+		String palabraPistaTemp = palabraPista;
+		boolean acertado = false;
+		boolean repetido = false;
+		int cont = 0;
+
+		if (noAcertadas.length() != 1) {
+			while (!repetido && cont < noAcertadas.length()) {
+				if (letra == noAcertadas.charAt(cont)) {
+					repetido = true;
+				}
+				cont++;
+			}
+		}
+
+		if (!repetido) {
+			for (int i = 0; i < palabraSecreta.length(); i++) {
+
+				if (letra == palabraSecreta.charAt(i)) {
+					palabraPista = palabraPistaTemp.substring(0, i) + letra + palabraPistaTemp.substring(i + 1);
+					palabraPistaTemp = palabraPista;
+					acertado = true;
+				}
+
+			}
+
+			if (!acertado) {
+				noAcertadas += letra;
+			}
+		} else {
+			System.out.println("Has repetido letra, vuelva a introducir una");
+		}
+
 	}
 
 	//
 	static void compruebaPalabra(String palabra) {
-		
-		if(palabra.equals(palabraSecreta)) {
-			palabraPista=palabraSecreta;
+
+		if (palabra.equals(palabraSecreta)) {
+			palabraPista = palabraSecreta;
 		}
 
 	}
