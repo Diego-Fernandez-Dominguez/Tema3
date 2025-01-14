@@ -1,4 +1,4 @@
-package boletin6;
+package examenes;
 
 import java.util.Random;
 import java.util.Scanner;

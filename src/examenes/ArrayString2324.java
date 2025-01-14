@@ -1,4 +1,4 @@
-package boletin6;
+package examenes;
 
 public class ArrayString2324 {
 
