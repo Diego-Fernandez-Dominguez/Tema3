@@ -30,20 +30,19 @@ public class Examen2223 {
 
 		while (!palabraSecreta.equals(palabraPista) && noAcertadas.length() < NUM_INTENTOS + 1) {
 			pintaPista();
-			System.out.println(palabraSecreta);
 
 			opcion = menu();
 
 			if (opcion == 1) {
 
 				System.out.println("Has elegido la letra");
-				letra = sc.next().charAt(0);
+				letra = sc.next().toLowerCase().charAt(0);
 				compruebaLetra(letra);
 
 			} else {
 
 				System.out.println("Has elegido la palabra");
-				palabra = sc.next();
+				palabra = sc.next().toLowerCase();
 				compruebaPalabra(palabra);
 
 			}
