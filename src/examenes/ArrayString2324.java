@@ -157,7 +157,7 @@ public class ArrayString2324 {
 
 			if (abecedario[codigoNum1][codigoNum2] == letra) {
 
-				fraseCodificada = fraseCodificada.replaceAll(codigo, letra + "");
+				fraseCodificada = fraseCodificada.replace(codigo, letra + "");
 
 				acierto = true;
 
