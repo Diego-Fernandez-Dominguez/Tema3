@@ -9,6 +9,7 @@ public class Ejercicio9 {
 
 	public static void main(String[] args) {
 
+		//
 		TreeMap<Integer, Integer> numeros = new TreeMap<Integer, Integer>();
 
 		TreeMap<Integer, Integer> estrellas = new TreeMap<Integer, Integer>();

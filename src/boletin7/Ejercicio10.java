@@ -9,6 +9,7 @@ public class Ejercicio10 {
 
 	public static void main(String[] args) {
 
+		//
 		LinkedHashMap<String, Integer> productos = new LinkedHashMap<String, Integer>();
 
 		int eleccion = 1;
