@@ -19,11 +19,13 @@ public class ExamenT2 {
 
 		int carta;
 
-		char eleccion;
+		char eleccion = ' ';
 
 		String palo;
 
 		String figura;
+
+		boolean error;
 
 		for (int i = 1; i <= 2; i++) {
 
@@ -33,8 +35,22 @@ public class ExamenT2 {
 
 			puntosJ2 = 0;
 
-			System.out.println("\nJugador " + i + ", desea pedir una carta");
-			eleccion = sc.nextLine().toUpperCase().charAt(0);
+			do {
+				try {
+
+					System.out.println("\nJugador " + i + ", desea pedir una carta");
+					eleccion = sc.nextLine().toUpperCase().charAt(0);
+					assert eleccion == 'S' || eleccion == 'N' : "Ponga S o N";
+					error = false;
+
+				} catch (AssertionError e) {
+					System.err.println(e.getMessage());
+					error = true;
+				} catch (StringIndexOutOfBoundsException e) {
+					System.err.println("Ponga S o N");
+					error = true;
+				}
+			} while (error);
 
 			while (eleccion == 'S') {
 
@@ -112,8 +128,22 @@ public class ExamenT2 {
 
 				} else {
 
-					System.out.println("\nJugador " + i + ", desea pedir una carta");
-					eleccion = sc.nextLine().toUpperCase().charAt(0);
+					do {
+						try {
+
+							System.out.println("\nJugador " + i + ", desea pedir una carta");
+							eleccion = sc.nextLine().toUpperCase().charAt(0);
+							assert eleccion == 'S' || eleccion == 'N' : "Ponga S o N";
+							error = false;
+
+						} catch (AssertionError e) {
+							System.err.println(e.getMessage());
+							error = true;
+						} catch (StringIndexOutOfBoundsException e) {
+							System.err.println("Ponga S o N");
+							error = true;
+						}
+					} while (error);
 
 				}
 
