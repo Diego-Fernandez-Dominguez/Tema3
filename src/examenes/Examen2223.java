@@ -30,7 +30,7 @@ public class Examen2223 {
 
 		while (!palabraSecreta.equals(palabraPista) && noAcertadas.length() < NUM_INTENTOS + 1) {
 			pintaPista();
-						
+
 			opcion = menu();
 
 			if (opcion == 1) {
@@ -129,6 +129,8 @@ public class Examen2223 {
 
 		if (palabra.equals(palabraSecreta)) {
 			palabraPista = palabraSecreta;
+		} else {
+			noAcertadas += "|";
 		}
 
 	}
