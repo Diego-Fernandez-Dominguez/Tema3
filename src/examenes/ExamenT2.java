@@ -19,11 +19,13 @@ public class ExamenT2 {
 
 		int carta;
 
-		char eleccion;
+		char eleccion = ' ';
 
 		String palo;
 
 		String figura;
+
+		boolean error = false;
 
 		for (int i = 1; i <= 2; i++) {
 
@@ -33,8 +35,19 @@ public class ExamenT2 {
 
 			puntosJ2 = 0;
 
-			System.out.println("\nJugador " + i + ", desea pedir una carta");
-			eleccion = sc.nextLine().toUpperCase().charAt(0);
+			do {
+				try {
+					System.out.println("\nJugador " + i + ", desea pedir una carta");
+					eleccion = sc.nextLine().toUpperCase().charAt(0);
+					
+					assert eleccion == 'S' || eleccion == 'N' : "La eleccion debe ser S o N";
+					error = false;
+
+				} catch (AssertionError e) {
+					System.err.println(e.getMessage());
+					error = true;
+				}
+			} while (error);
 
 			while (eleccion == 'S') {
 
@@ -112,8 +125,19 @@ public class ExamenT2 {
 
 				} else {
 
-					System.out.println("\nJugador " + i + ", desea pedir una carta");
-					eleccion = sc.nextLine().toUpperCase().charAt(0);
+					do {
+						try {
+							System.out.println("\nJugador " + i + ", desea pedir una carta");
+							eleccion = sc.nextLine().toUpperCase().charAt(0);
+
+							assert eleccion == 'S' || eleccion == 'N' : "La eleccion debe ser S o N";
+							error = false;
+
+						} catch (AssertionError e) {
+							System.err.println(e.getMessage());
+							error = true;
+						}
+					} while (error);
 
 				}
 
