@@ -9,18 +9,22 @@ public class Ejercicio4 {
 
 	public static void main(String[] args) {
 
+		// Creo el conjunto que va a guardar los numeros
 		TreeSet<Integer> numeros = new TreeSet<Integer>();
 
+		// Añado los numeros aleatorios a la coleccion
 		for (int i = 0; i < 21; i++) {
 
-			numeros.add(aleatoritos.nextInt(0, 10));
+			// Los numeros aleatorios estan en el rango del 0 al 99
+			numeros.add(aleatoritos.nextInt(0, 100));
 
 		}
-		
-		for(int num:numeros) {
-			
+
+		// Saco los numeros con un for-each
+		for (int num : numeros) {
+
 			System.out.print(num + " ");
-			
+
 		}
 
 	}
