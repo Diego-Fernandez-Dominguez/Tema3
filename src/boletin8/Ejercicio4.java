@@ -29,10 +29,11 @@ public class Ejercicio4 {
 
 			// Saco el menu por pantalla
 			System.out.println("Eliga una opcion: ");
-			System.out.println("\n1. Agregar serie ");
-			System.out.println("2. Buscar serie ");
-			System.out.println("3. Eliminar serie ");
-			System.out.println("4. Salir");
+			System.out.println("\n1. Añadir nuevo nombre a la lista ");
+			System.out.println("2. Eliminar un nombre en espeecifico ");
+			System.out.println("3. Ordena la lista alfabeticamente ");
+			System.out.println("4. Busca si un nombre especifico esta en la lista ");
+			System.out.println("5. Salir");
 
 			// El usuario lo introduce
 			eleccion = sc.nextInt();
