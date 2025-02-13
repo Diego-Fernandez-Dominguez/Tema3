@@ -74,18 +74,21 @@ public class Ejercicio8 {
 			case 4 -> {
 
 				System.out.println("Digame la categoria");
-				categoria=sc.nextLine();
+				categoria = sc.nextLine();
 
 				System.out.println("Digame la tarea");
 				tarea = sc.nextLine();
-				
+
 				tareas.get(categoria);
 
 			}
 
 			case 5 -> {
 
-				System.out.println();
+				System.out.println("Digame una categoria");
+				categoria = sc.nextLine();
+
+				tareas.remove(categoria);
 
 			}
 
